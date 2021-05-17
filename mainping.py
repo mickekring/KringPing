@@ -22,6 +22,11 @@ class bcolors:
 	UNDERLINE = '\033[4m'
 
 
+### Reads passwords, paths, sites to monitor and stuff from file
+
+conf = yaml.load(open('credentials.yml'), Loader=yaml.FullLoader)
+
+
 ### Variables
 
 humanErrorMess = "..." # Init global variable used for a more human error explanation
@@ -29,8 +34,8 @@ connection = 0 # Init variable to test if script has got an internet connection
 pauseTime = 10 # Number of seconds to wait before main loop runs again
 pauseTimeSite = 2 # Number of seconds to wait between looping though sites to test 
 
-localUrlPath = "/Users/micke/Dropbox/KOD/KringPing/" # Local path of php-files
-remoteUrlPath ="/var/www/arstaskolan.se/public/stats/" # Remote path on SFTP server for php-files
+localUrlPath = conf['paths']['localurlpath'] # Local path of php-files on the machine running the script - in credentials.xml
+remoteUrlPath = conf['paths']['remoteurlpath'] # Remote path on SFTP server for php-files - in credentials.xml
 
 sitesDown = [] # Init list to store sites that are down
 
@@ -52,15 +57,9 @@ table_down_now = db.table('DownNow')
 table_log = db.table('Log')
 
 
-### Reads passwords and stuff from file
-
-conf = yaml.load(open('credentials.yml'), Loader=yaml.FullLoader)
-
-
 ### Sites to monitor
 
-sites = ['https://mickekring.se', 'https://kurser.mickekring.se', 'https://kodknack.se', 'https://plop.se', 'http://quadarea.com', 'http://lillavinbloggen.se']
-#sites = ['https://arstaskolan.se', 'https://it.arstaskolan.se', 'https://support.arstaskolan.se', 'https://kurser.arstaskolan.se', 'https://kodknack.se', 'https://mikportalen.se', 'https://larporten.se', 'https://bibblis.se', 'http://riktigtsant.se', 'https://klass.arstaskolan.se', 'https://site.arstaskolan.se', 'https://plejtv.se']
+sites = conf['sites']['listsites'] # in credentials.xml
 
 
 ### Checks if there is a connection to the internet
@@ -455,12 +454,12 @@ def timeNow():
 
 def fileupload():
 	try:
-		host = conf['user']['host']
-		port = conf['user']['port']
+		host = conf['sftp']['host']
+		port = conf['sftp']['port']
 		transport = paramiko.Transport((host, port))
 
-		password = conf['user']['password']
-		username = conf['user']['username']
+		password = conf['sftp']['password']
+		username = conf['sftp']['username']
 		transport.connect(username = username, password = password)
 
 		sftp = paramiko.SFTPClient.from_transport(transport)
