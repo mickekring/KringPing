@@ -24,6 +24,11 @@ pip3 install paramiko <br />
 pip3 install pyyaml<br />
 pip3 install tinydb<br />
 
+__Web site and server__
+
+You need a website url and web server that the script can upload the frontend php-files to, via sftp.<br />
+Your web server needs at least a web server (?!) like Apache or nGinx and php5+
+
 # Changelog
 
 ### v 1.1 | May 17 2021
