@@ -6,6 +6,8 @@ This project is using the Python requests module to connect to your site (or sit
 I run the script on a Raspberry Pi, uploading the php-files the script generates to my web server.<br /><br />
 __Disclaimer!__ I'm just a cowboy builder when it comes to coding. I'm not a coder, just a tinkerer. As long as it works...
 
+![kringping](https://user-images.githubusercontent.com/10948066/118539114-53227a80-b74f-11eb-9f2d-b7d1d5b23679.jpg)
+
 ## Flow
 1. The script tries to connect to your site (or sites) if it's connected to the internet.
 2. If site(s) is down - script logs the site(s) with a warning in the database and tries two more times.
