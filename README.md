@@ -2,8 +2,8 @@
 It's a Python script that checks whether your sites are up or down
 
 ## What's this?
-This project is using the Python requests module to connect to your site (or sites) to check if your site is up or down, and if down - logs this to a TinyDB database and e-mails you. It also updates a web page with info.<br />
-I run this on a Raspberry Pi, uploading the php-files the script generates to my web server.<br /><br />
+This project is using the Python requests module to connect to your site (or sites) and check if your site(s) is up or down, and if down - logs this to a TinyDB database and e-mails you. It also updates a web page front end with basic info.<br />
+I run the script on a Raspberry Pi, uploading the php-files the script generates to my web server.<br /><br />
 __Disclaimer!__ I'm just a cowboy builder when it comes to coding. I'm not a coder, just a tinkerer. As long as it works...
 
 ## Flow
