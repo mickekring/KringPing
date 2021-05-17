@@ -18,7 +18,7 @@ __Disclaimer!__ I'm just a cowboy builder when it comes to coding. I'm not a cod
 
 ### Python 3.x
 
-Modules
+__Modules__
 
 pip3 install paramiko <br />
 pip3 install pyyaml<br />
@@ -26,6 +26,9 @@ pip3 install tinydb<br />
 
 # Changelog
 
-## v 1.0 | May 16 2021
+### v 1.1 | May 17 2021
+Updated mainping.py and moved server paths and sites to monitor to credentials.xml
+
+### v 1.0 | May 16 2021
 Initial upload. Everything works as the flow above describes.<br />
 This README.md lacks a lot. :) 
