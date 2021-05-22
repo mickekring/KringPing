@@ -40,7 +40,7 @@ Your web server needs at least a web server (?!) like Apache or nGinx and php5+
 
 # Changelog
 
-### v 1.1.1 | May 17 2021
+### v 1.1.1 | May 22 2021
 Minor updates. 
 
 ### v 1.1 | May 17 2021
