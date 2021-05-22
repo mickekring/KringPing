@@ -31,6 +31,13 @@ __Web site and server__
 You need a website url and web server that the script can upload the frontend php-files to, via sftp.<br />
 Your web server needs at least a web server (?!) like Apache or nGinx and php5+
 
+## Setup
+
+1. Save the files mainping.py, credentials.xml and dbping.json on the machine that will be running the script. 
+2. Upload the files index.php and style.css to your web server.
+3. Edit credentials.xml and add your info such as file paths, sftp account and more.
+4. Run mainping.py
+
 # Changelog
 
 ### v 1.1 | May 17 2021
