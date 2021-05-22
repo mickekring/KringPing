@@ -32,7 +32,7 @@ conf = yaml.load(open('credentials.yml'), Loader=yaml.FullLoader)
 humanErrorMess = "..." # Init global variable used for a more human error explanation
 connection = 0 # Init variable to test if script has got an internet connection
 pauseTime = 10 # Number of seconds to wait before main loop runs again
-pauseTimeSite = 2 # Number of seconds to wait between looping though sites to test 
+pauseTimeSite = 1 # Number of seconds to wait between looping though sites to test 
 
 localUrlPath = conf['paths']['localurlpath'] # Local path of php-files on the machine running the script - in credentials.xml
 remoteUrlPath = conf['paths']['remoteurlpath'] # Remote path on SFTP server for php-files - in credentials.xml
@@ -49,7 +49,7 @@ styleColor = "green"
 styleMessage ="All systems GO"
 
 
-### Database anf tables setup
+### Database and tables setup
 
 db = TinyDB('dbping.json')
 
@@ -408,7 +408,7 @@ def sites_down_now():
 	with open("downnow.php", "w") as f1:
 		f1.write('<h1 style="color: ' + styleColor + '">' + str(sitesDownList) + '</h1>')
 
-def get_latest_error():
+def get_latest_error(): # Rewrite - nicer....
 	try:
 		get_total_db = len(table_log)
 		get_latest = table_log.get(doc_id=get_total_db)
@@ -418,13 +418,32 @@ def get_latest_error():
 		ls = ls.replace("http://","")
 		ls = ls.replace("https://","")
 		ls = ls.replace("/","")
+		lc = (get_latest['StatusCode'])
+
+		get_latest = table_log.get(doc_id=get_total_db - 1)
+
+		latest_date2 = (get_latest['DateTime'])
+		ls2 = (get_latest['Url'])
+		ls2 = ls.replace("http://","")
+		ls2 = ls.replace("https://","")
+		ls2 = ls.replace("/","")
+		lc2 = (get_latest['StatusCode'])
+
+		get_latest = table_log.get(doc_id=get_total_db - 2)
+
+		latest_date3 = (get_latest['DateTime'])
+		ls3 = (get_latest['Url'])
+		ls3 = ls.replace("http://","")
+		ls3 = ls.replace("https://","")
+		ls3 = ls.replace("/","")
+		lc3 = (get_latest['StatusCode'])
 
 	except:
 		ls = "No errors logged"
 		latest_date = "No errors logged"
 
 	with open("lastdown.php", "w") as f1:
-		f1.write('<p class="boxp">' + latest_date + '<br />' + ls + '</p>')
+		f1.write('<p class="boxp"><strong>' + latest_date + '</strong><br />' + ls + ' | ' + lc + '</p>' + '<p class="boxp"><strong>' + latest_date2 + '</strong><br />' + ls2 + ' | ' + lc2 + '</p>'  + '<p class="boxp"><strong>' + latest_date3 + '</strong><br />' + ls3 + ' | ' + lc3 + '</p>')
 
 
 ### Creates page time.php with stamped date and time
