@@ -408,42 +408,38 @@ def sites_down_now():
 	with open("downnow.php", "w") as f1:
 		f1.write('<h1 style="color: ' + styleColor + '">' + str(sitesDownList) + '</h1>')
 
-def get_latest_error(): # Rewrite - nicer....
+
+### Queries the database for the last errors and writes to lastdown.php which in displayed on frontend
+
+def get_latest_error():
 	try:
-		get_total_db = len(table_log)
-		get_latest = table_log.get(doc_id=get_total_db)
 
-		latest_date = (get_latest['DateTime'])
-		ls = (get_latest['Url'])
-		ls = ls.replace("http://","")
-		ls = ls.replace("https://","")
-		ls = ls.replace("/","")
-		lc = (get_latest['StatusCode'])
+		latest_html = []
 
-		get_latest = table_log.get(doc_id=get_total_db - 1)
+		for x in range(0, 3):
 
-		latest_date2 = (get_latest['DateTime'])
-		ls2 = (get_latest['Url'])
-		ls2 = ls.replace("http://","")
-		ls2 = ls.replace("https://","")
-		ls2 = ls.replace("/","")
-		lc2 = (get_latest['StatusCode'])
+			get_total_db = len(table_log)
+			get_latest = table_log.get(doc_id=get_total_db - x)
 
-		get_latest = table_log.get(doc_id=get_total_db - 2)
+			latest_date = (get_latest['DateTime'])
+			ls = (get_latest['Url'])
+			ls = ls.replace("http://","")
+			ls = ls.replace("https://","")
+			ls = ls.replace("/","")
+			lc = (get_latest['StatusCode'])
 
-		latest_date3 = (get_latest['DateTime'])
-		ls3 = (get_latest['Url'])
-		ls3 = ls.replace("http://","")
-		ls3 = ls.replace("https://","")
-		ls3 = ls.replace("/","")
-		lc3 = (get_latest['StatusCode'])
+			latest_html.append('<p class="boxp"><strong>' + latest_date + '</strong><br />' + ls + ' | ' + lc + '</p>')
+
+		latest_html_joined = ("".join(latest_html))
+
+		print(latest_html_joined)
 
 	except:
 		ls = "No errors logged"
 		latest_date = "No errors logged"
 
 	with open("lastdown.php", "w") as f1:
-		f1.write('<p class="boxp"><strong>' + latest_date + '</strong><br />' + ls + ' | ' + lc + '</p>' + '<p class="boxp"><strong>' + latest_date2 + '</strong><br />' + ls2 + ' | ' + lc2 + '</p>'  + '<p class="boxp"><strong>' + latest_date3 + '</strong><br />' + ls3 + ' | ' + lc3 + '</p>')
+		f1.write(latest_html_joined)
 
 
 ### Creates page time.php with stamped date and time
