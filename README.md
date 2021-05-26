@@ -40,6 +40,9 @@ Your web server needs at least a web server (?!) like Apache or nGinx and php5+
 
 # Changelog
 
+### v 1.1.2 | May 26 2021
+Bug fix - frontend showing latest errors displayed the last errored url on all three lines.
+
 ### v 1.1.1 | May 22 2021
 Minor updates. 
 
