@@ -533,7 +533,7 @@ def Main():
 
 			get_status()
 
-			conDown == 0
+			conDown = 0
 
 			time.sleep(pauseTime)
 
