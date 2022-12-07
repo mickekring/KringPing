@@ -1,5 +1,5 @@
 
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 
 from urllib.request import urlopen
 import sys
@@ -479,18 +479,21 @@ def create_stat_uptime(site):
 
 
 	site_time_seconds = (sum(down_time_seconds_list))
-	#return total_time_seconds
-
 	latest_total_seconds =  table_total_time.get(doc_id = 1)
-	latest_total_seconds = latest_total_seconds['Seconds']
+
+	try:
+		latest_total_seconds = latest_total_seconds['Seconds']
+
+	except:
+		latest_total_seconds = 1
+
 	print(f"Second from dadabase {latest_total_seconds}")
 
 	time_down_percent = (site_time_seconds / latest_total_seconds) * 100
 	time_up_percent = round(100 - time_down_percent, 2)
-	print(time_down_percent)
-	print(time_up_percent)
 
 	return time_up_percent
+
 
 
 def upload_files():
