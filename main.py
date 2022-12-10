@@ -1,5 +1,5 @@
 
-__version__ = "2.0.1"
+__version__ = "2.0.2"
 
 from urllib.request import urlopen
 import sys
@@ -413,11 +413,11 @@ def create_html_status(time_now, site_url, site, response_time, html_status, up_
 		circle = '<i class="fa-solid fa-circle-down"></i>'
 		status_p = "mstatus_red"
 
-	time_up = create_stat_uptime(site)
+	time_up = create_stat_uptime(site_url)
 
 	time_now_readable = (f'<i class="fa-regular fa-calendar"></i> {year}-{month}-{day} <i class="fa-regular fa-clock"></i> {hour}:{minute}:{second}')
 	
-	avg_req_time = average_request_get_time(site)
+	avg_req_time = average_request_get_time(site_url)
 
 	status_title = circle + '<br /><h2>' + site + '</h2>'
 	
@@ -431,9 +431,9 @@ def create_html_status(time_now, site_url, site, response_time, html_status, up_
 
 
 
-def average_request_get_time(site):
+def average_request_get_time(site_url):
 
-	get_site_from_db = table_log.search(ask.SiteName == site)
+	get_site_from_db = table_log.search(ask.Url == site_url)
 
 	avg_list = []
 
@@ -452,9 +452,9 @@ def average_request_get_time(site):
 
 
 
-def create_stat_uptime(site):
+def create_stat_uptime(site_url):
 
-	get_site_from_db = table_down_time.search(ask.SiteName == site)
+	get_site_from_db = table_down_time.search(ask.Url == site_url)
 
 	down_time_seconds_list = []
 
